@@ -7,7 +7,19 @@ function completarTarefa(id) {
         body: JSON.stringify({ id })
     })
     window.location.reload()
-}
+};
+
+function descompletarTarefa(id) {
+    fetch('http://localhost:3000/descompletar', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id })
+    });
+
+    window.location.reload();
+};
 
 function alterarTema() {
     const tema = localStorage.getItem("tema")
@@ -35,7 +47,7 @@ function alterarTema() {
 
     localStorage.setItem("tema", "dark")
     body.classList.add("dark")
-}
+};
 
 function verificarTema() {
     const tema = localStorage.getItem("tema")
@@ -50,6 +62,6 @@ function verificarTema() {
         body.classList.add("light")
         button.innerHTML = `<img src="/imagens/moon-icon.png" alt="icone da lua">`
     }
-}
+};
 
-verificarTema()
+verificarTema();
