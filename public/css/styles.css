@@ -8,8 +8,12 @@
 :root {
     --bg-header-mobile: url(../imagens/bg-header-mobile-light.png);
     --input-box-shadow: rgba(194, 195, 214, 0.50);
-    --inout-color: #494C6B;
-    --input-bg: #fff;
+    --input-color: #494C6B;
+    --button-color: #393A4B;
+    --bg-main: #fafafa;
+    --bg-tarefas: #fff;
+    --box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.50);
+
 }
 
 header {
@@ -55,4 +59,37 @@ header form button {
     border: none;
     background: var(--button-color);
     color:#fff;
+}
+
+main {
+    background-color: var(--bg-main);
+    min-height: calc(100vh - 12.5rem);
+    padding-inline: 1.5rem;
+
+}
+
+.tarefas {
+    background: var(--bg-tarefas);
+    box-shadow: var(--box-shadow);
+    border-radius: 0.3125rem;
+    margin-top: -1.5rem;
+}
+
+.tarefas .tarefa {
+   padding: 1rem 1.25rem;
+}
+
+.tarefa form {
+    display: flex;
+    justify-content: space-between;
+} 
+
+.tarefa div {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tarefas button {
+    border: none;
 }
