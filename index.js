@@ -9,6 +9,10 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
+app.post('/criar' , (requisicoes, resposta) => {
+    
+})
+
 app.get('/', (requisicao, resposta) => {
     resposta.render('home')
 })
