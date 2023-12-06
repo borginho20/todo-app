@@ -52,8 +52,8 @@ app.post('/completar', (requisicao, resposta) => {
     WHERE id = ${id}
     `
 
-    conexao.query(sql, (erro) =>{
-        if (erro){
+    conexao.query(sql, (erro) => {
+        if (erro) {
             return console.log(erro)
         }
 
@@ -61,25 +61,25 @@ app.post('/completar', (requisicao, resposta) => {
     })
 })
 
-app.post('/descompletar', (requisicao, resposta) =>{
+app.post('/descompletar', (requisicao, resposta) => {
     const id = requisicao.body.id;
     
     const sql = `
         UPDATE tarefas
         SET completa = '0'
         WHERE id = ${id}
-    `;
+    `
 
     conexao.query(sql, (erro) => {
         if (erro) {
-            return console.log(erro);
-        };
+            return console.log(erro)
+        }
 
-        resposta.redirect('/');
-    });
-});
+        resposta.redirect('/')
+    })
+})
 
-app.post('/criar' , (requisicoes, resposta) => {
+app.post('/criar' , (requisicao, resposta) => {
    const descricao =  requisicao.body.descricao
    const completa = 0
 
@@ -101,20 +101,20 @@ app.get('/completas',(requisicao, resposta) => {
     const sql = `
         SELECT * FROM tarefas
         WHERE completa = 1    
-    `;
+    `
 
     conexao.query(sql, (erro, dados) => {
         if (erro){
             return console.log(erro);
-        };
+        }
 
         const tarefas = dados.map((dado) =>{
             return{
                 id: dado.id,
                 descricao: dado.descricao,
                 completa: true
-            };
-        });
+            }
+        })
 
         const quantidadeTarefas = tarefas.length;
 
@@ -122,7 +122,7 @@ app.get('/completas',(requisicao, resposta) => {
     })
 })
 
-app.get('/ativas', (requisicoes, resposta) => {
+app.get('/ativas', (requisicao, resposta) => {
     const sql = `
     SELECT * FROM tarefas
     WHERE completa = 0
@@ -141,7 +141,7 @@ app.get('/ativas', (requisicoes, resposta) => {
             }
         })
 
-        const quantidadeTarefas = Tarefas.length
+        const quantidadeTarefas = tarefas.length
 
         resposta.render('ativas', { tarefas, quantidadeTarefas})
     })
@@ -166,14 +166,14 @@ app.get('/', (requisicao, resposta) => {
            return tarefa.completa === false && tarefa 
        })
        const quantidadeTarefasAtivas = tarefasAtivas.length
-       resposta.render('home', {tarefas})
+       resposta.render('home', {tarefas,quantidadeTarefasAtivas})
     })
 })
 
 const conexao = mysql.createConnection({
     host: 'localhost',
     user:'root',
-    password: 'root',
+    password: 'ROOT',
     database: 'todolist',
     port: 3306
 })
